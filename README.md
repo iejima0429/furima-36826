@@ -4,67 +4,76 @@
 
 | Column               | Type    | Option                      |
 | -------------------- | --------| --------------------------- |
-| nickname             | string  | null: folse, unique: true   |
-| mail                 | string  | null: folse, unique: true   |
-| password             | string  | null: folse                 |
-| first_name           | string  | null: folse                 |
-| first_name_kana      | string  | null: folse                 |
-| last_name_kana       | string  | null: folse                 |
-| birthday_year        | integer | null: folse                 |
-| birthday_month       | integer | null: folse                 |
-| birthday_days        | integer | null: folse                 |
+| nickname             | string  | null: false                 |
+| email                | string  | null: false, unique: true   |
+| encrypted_password   | string  | null: false                 |
+| first_name           | string  | null: false                 |
+| last_name            | string  | null: false                 |
+| first_name_kana      | string  | null: false                 |
+| last_name_kana       | string  | null: false                 |
+| birthday　　　        | data    | null: false                 |
 ### Association
 has_many :items
-has_many :buy
+has_many :buys
 has_many :comments
+belongs_to :sold_outs
 
 
 ## items テーブル
 
-|Column               | Type       | Option                         |
-|---------------------|------------|--------------------------------|
-| item_name           | string     | null: folse                    |
-| item_info           | text       | null: folse                    |
-| item_category       | string     | null: folse                    |
-| item_status         | string     | null: folse                    |
-| item_delivery_free  | string     | null: folse                    |
-| shipping_area       | string     | null: folse                    |
-| days_to_ship        | integer    | null: folse                    |
-| price               | integer    | null: folse                    |
-| user                | reference  | null: folse, foreign_key: true |
+|Column                  | Type       | Option                         |
+|------------------------|------------|--------------------------------|
+| item_name              | string     | null: false                    |
+| item_info              | text       | null: false                    |
+| item_category_id       | integer    | null: false                    |
+| item_status_id         | integer    | null: false                    |
+| item_delivery_free_id  | string     | null: false                    |
+| shipping_area_id       | string     | null: false                    |
+| days_to_ship_id        | integer    | null: false                    |
+| price                  | integer    | null: false                    |
+| user                   | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
 belongs_to :buy
+belpngs_to :sold_out
 has_many   :comments
 
-## buy テーブル
 
-|Column                | Type      | Option                         |
-|----------------------|--------------------------------------------|
-| card_number          | integer   | null: folse                    |
-| expiration_month     | integer   | null: folse                    |
-| expiration_days      | integer   | null: folse                    |
-| cvc                  | integer   | null: folse                    |
-| post_number          | string    | null: folse                    |
-| area                 | string    | null: folse                    |
-| city_town_village    | string    | null: folse                    |
-| address_number       | integer   | null: folse                    |
-| buliding_name        | string    |                                |
-| tel_number           | integer   | null: folse                    |
-| item                 | reference | null: folse, foreign_key: true |
+## buys テーブル
+
+|Column                | Type       | Option                         |
+|----------------------|------------|--------------------------------|
+| post_number          | string     | null: false                    |
+| area                 | string     | null: false                    |
+| city_town_village    | string     | null: false                    |
+| address_number       | string     | null: false                    |
+| buliding_name        | string     |                                |
+| tel_number           | string     | null: false                    |
+| item                 | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
-belongs_to :items
+belongs_to :item
 
 ## comments テーブル
 
-|Column    | Type      | Option                        |
-|----------------------|------------------------------|
-|content   | text      | null: folse                    |
-|item      | reference | null: folse, foreign_key: true |
-|user      | reference | null: folse, foreign_key: true |
+|Column    | Type       | Option                         |
+|-----------------------|--------------------------------|
+|content   | text       | null: false                    |
+|item      | references | null: false, foreign_key: true |
+|user      | references | null: false, foreign_key: true |
+
+### Association
+belongs_to :user
+belongs_to :item
+
+## sold_outs テーブル
+
+|Column   | Type       | Option                         |
+|---------|------------|--------------------------------|
+| item    | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
