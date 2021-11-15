@@ -48,6 +48,7 @@ has_many   :comments
 | address_number       | string     | null: false                    |
 | buliding_name        | string     |                                |
 | tel_number           | string     | null: false                    |
+| sold_out             | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :sold_out
@@ -74,4 +75,4 @@ belongs_to :item
 ### Association
 belongs_to :user
 belongs_to :item
-belongs_to :buy
+has_one    :buy
