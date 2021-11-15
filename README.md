@@ -35,8 +35,8 @@ belongs_to :sold_outs
 
 ### Association
 belongs_to :user
-belongs_to :buy
-belpngs_to :sold_out
+has_one :buy
+belongs_to :sold_out
 has_many   :comments
 
 
@@ -45,16 +45,14 @@ has_many   :comments
 |Column                | Type       | Option                         |
 |----------------------|------------|--------------------------------|
 | post_number          | string     | null: false                    |
-| area                 | string     | null: false                    |
+| shipping_area_id     | string     | null: false                    |
 | city_town_village    | string     | null: false                    |
 | address_number       | string     | null: false                    |
 | buliding_name        | string     |                                |
 | tel_number           | string     | null: false                    |
-| item                 | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :user
-belongs_to :item
+belongs_to :sold_out
 
 ## comments テーブル
 
@@ -78,3 +76,4 @@ belongs_to :item
 ### Association
 belongs_to :user
 belongs_to :item
+belongs_to :buy
