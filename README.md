@@ -11,12 +11,11 @@
 | last_name            | string  | null: false                 |
 | first_name_kana      | string  | null: false                 |
 | last_name_kana       | string  | null: false                 |
-| birthday　　　        | data    | null: false                 |
+| birthday             | date    | null: false                 |
 ### Association
 has_many :items
 has_many :buys
 has_many :comments
-belongs_to :sold_outs
 
 
 ## items テーブル
@@ -28,15 +27,14 @@ belongs_to :sold_outs
 | item_category_id       | integer    | null: false                    |
 | item_status_id         | integer    | null: false                    |
 | item_delivery_free_id  | string     | null: false                    |
-| shipping_area_id       | string     | null: false                    |
+| shipping_area_id       | integer    | null: false                    |
 | days_to_ship_id        | integer    | null: false                    |
 | price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
-has_one :buy
-belongs_to :sold_out
+has_one    :sold_out
 has_many   :comments
 
 
@@ -45,7 +43,7 @@ has_many   :comments
 |Column                | Type       | Option                         |
 |----------------------|------------|--------------------------------|
 | post_number          | string     | null: false                    |
-| shipping_area_id     | string     | null: false                    |
+| shipping_area_id     | integer    | null: false                    |
 | city_town_village    | string     | null: false                    |
 | address_number       | string     | null: false                    |
 | buliding_name        | string     |                                |
