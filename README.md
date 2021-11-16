@@ -26,7 +26,7 @@ has_many :comments
 | item_info              | text       | null: false                    |
 | item_category_id       | integer    | null: false                    |
 | item_status_id         | integer    | null: false                    |
-| item_delivery_free_id  | string     | null: false                    |
+| item_delivery_free_id  | integer    | null: false                    |
 | shipping_area_id       | integer    | null: false                    |
 | days_to_ship_id        | integer    | null: false                    |
 | price                  | integer    | null: false                    |
