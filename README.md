@@ -14,7 +14,7 @@
 | birthday             | date    | null: false                 |
 ### Association
 has_many :items
-has_many :buys
+has_many :sold_outs
 has_many :comments
 
 
