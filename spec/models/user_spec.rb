@@ -22,10 +22,20 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("First name can't be blank")
     end
+    it 'first_nameに半角文字が含まれていると登録できない' do
+      @user.first_name = 'aiueo'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    end
     it 'last_nameが空では登録できない' do
       @user.last_name = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name can't be blank")
+    end
+    it 'last_nameに半角文字が含まれていると登録できない' do
+      @user.last_name = 'aiueo'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
     end
     it 'first_name_kanaが空では登録できない' do
       @user.first_name_kana = ''
@@ -57,6 +67,11 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
+    it 'メールアドレスに@を含まない場合は登録できない' do
+      @user.email = 'abcdefg'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
     it '重複したemailが存在する場合登録できない' do
       @user.save
       another_user = FactoryBot.build(:user)
@@ -85,8 +100,20 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end
-    it "passwordは英数字混合でないと登録できない" do
+    it "passwordは数字だけでは登録できない" do
       @user.password = "000000"
+      @user.password_confirmation = @user.password
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it "passwordは英字だけでは登録できない" do
+      @user.password = "aaaaaa"
+      @user.password_confirmation = @user.password
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it "全角文字を含むパスワードでは登録できない" do
+      @user.password = "あいうえお１２３"
       @user.password_confirmation = @user.password
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
