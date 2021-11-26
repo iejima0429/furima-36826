@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :shipping_area_id , presence: true
   validates :days_to_ship_id , presence: true
   validates :price , presence: true, format: { with: /\A[0-9]+\z/ }
+  validates :image, presence: true
 
   has_one_attached :image
   belongs_to :user
