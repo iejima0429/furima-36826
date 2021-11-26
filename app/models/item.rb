@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   validates :item_delivery_free_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :shipping_area_id , numericality: { other_than: 1 , message: "can't be blank"}
   validates :days_to_ship_id , numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :price , presence: true, format: { with: /\A[0-9]+\z/ }
+  validates_inclusion_of :price, in:300..9999999
   validates :image, presence: true
 
   has_one_attached :image
