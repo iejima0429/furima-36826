@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit]
+  
   def index
     @item = Item.order("created_at DESC")
     @item = Item.all
