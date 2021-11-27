@@ -4,8 +4,8 @@ function count (){
     const countVal = itemPrice.value;
     const charNum  = document.getElementById("add-tax-price");
     const bharNum  = document.getElementById("profit");
-    charNum.innerHTML = `${countVal * 0.1}`;
-    bharNum.innerHTML = `${countVal * 0.9}`;
+    charNum.innerHTML = Math.floor(countVal * 0.1)
+    bharNum.innerHTML =  itemPrice.value - Math.floor(itemPrice.value * 0.1 )
   });
 };
 
