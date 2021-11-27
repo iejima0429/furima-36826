@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   validates :item_category_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :item_status_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :item_delivery_free_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :shipping_area_id , numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :days_to_ship_id , numericality: { other_than: 1 , message: "can't be blank"} 
   validates_inclusion_of :price, in:300..9999999
   validates :image, presence: true
