@@ -48,6 +48,11 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Days to ship can't be blank")
         end
+        it 'priceの値が空のときは出品できない' do
+          @item.price = ''
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Price is not included in the list")
+        end
         it 'priceの値が300未満のときは出品できない' do
           @item.price = '299'
           @item.valid?
@@ -67,6 +72,11 @@ RSpec.describe Item, type: :model do
           @item.image = nil
           @item.valid?
           expect(@item.errors.full_messages).to include("Image can't be blank")
+        end
+        it 'userが紐付いていないと保存できない' do
+          @item.user = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include('User must exist')
         end
       end
     end

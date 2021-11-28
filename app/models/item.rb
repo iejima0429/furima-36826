@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :item_name
   validates :item_info
   validates :image
+  validates_inclusion_of :price, in:300..9999999
   end
   with_options  numericality: { other_than: 1 , message: "can't be blank"} do
   validates :item_category_id
