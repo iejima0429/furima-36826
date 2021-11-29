@@ -2,8 +2,9 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   
   def index
-    # @item = Item.order("created_at DESC") 商品一覧機能で使用する
-    # @item = Item.all 商品一覧機能で使用する
+    @item = Item.order("created_at DESC")
+    @items = Item.all
+    
   end
   
   def new
@@ -17,6 +18,20 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to root_path
   end
 
   private
