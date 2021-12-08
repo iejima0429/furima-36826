@@ -7,6 +7,7 @@ class Buy < ApplicationRecord
   validates :tel_number
   end
   belongs_to :sold_out
+  belongs_to :shipping_area
 end
 
 
