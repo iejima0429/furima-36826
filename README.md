@@ -38,7 +38,7 @@ has_one    :sold_out
 has_many   :comments
 
 
-## buys テーブル
+## orders テーブル
 
 |Column                | Type       | Option                         |
 |----------------------|------------|--------------------------------|
@@ -75,4 +75,4 @@ belongs_to :item
 ### Association
 belongs_to :user
 belongs_to :item
-has_one    :buy
+has_one    :order
