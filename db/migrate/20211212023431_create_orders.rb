@@ -7,6 +7,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :address_number, null: false
       t.string :buliding_name
       t.string :tel_number, null:false
+
       t.timestamps
     end
   end
