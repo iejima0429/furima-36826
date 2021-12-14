@@ -12,4 +12,9 @@ class SoldOutOrder
     validates :user_id
   end
   validates :shipping_area_id, numericality: {other_than: 1, message: "can't be blank"}
+
+  def save
+    sold_out = Sold_out.create(item_id: item_id, user_id: user_id)
+    Address.create(postal_number: postal_number, city_town_village: city_town_village, address_number: address_number, tel_number: tel_number, :sold_out_id: sold_out.id)
+  end
 end

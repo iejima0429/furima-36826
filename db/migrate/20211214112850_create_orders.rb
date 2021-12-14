@@ -6,10 +6,9 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :city_town_village, null: false
       t.string :address_number, null: false
       t.string :buliding_name
-      t.string :tel_number, null:false
-
+      t.string :tel_number, null: false
+      t.references :sold_out, null: false, foreign_key: true
       t.timestamps
     end
   end
- end
- 
+end
