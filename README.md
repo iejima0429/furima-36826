@@ -14,7 +14,7 @@
 | birthday             | date    | null: false                 |
 ### Association
 has_many :items
-has_many :sold_outs
+has_many :orders
 has_many :comments
 
 
@@ -34,11 +34,11 @@ has_many :comments
 
 ### Association
 belongs_to :user
-has_one    :sold_out
+has_one    :order
 has_many   :comments
 
 
-## orders テーブル
+## addresses テーブル
 
 |Column                | Type       | Option                         |
 |----------------------|------------|--------------------------------|
@@ -48,10 +48,10 @@ has_many   :comments
 | address_number       | string     | null: false                    |
 | buliding_name        | string     |                                |
 | tel_number           | string     | null: false                    |
-| sold_out             | references | null: false, foreign_key: true |
+| order                | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :sold_out
+belongs_to :order
 
 ## comments テーブル
 
@@ -65,7 +65,7 @@ belongs_to :sold_out
 belongs_to :user
 belongs_to :item
 
-## sold_outs テーブル
+## orders テーブル
 
 |Column   | Type       | Option                         |
 |---------|------------|--------------------------------|
@@ -75,4 +75,4 @@ belongs_to :item
 ### Association
 belongs_to :user
 belongs_to :item
-has_one    :order
+has_one    :addresse

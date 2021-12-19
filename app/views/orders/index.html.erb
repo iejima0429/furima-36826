@@ -7,7 +7,7 @@
      購入内容の確認
    </h1>
    
- 
+ <%= render 'shared/error_messages', model:@order_address %>
    <div class='buy-item-info'>
      <%= image_tag @item.image, class: 'buy-item-img' %>
      <div class='buy-item-right-content'>
@@ -30,8 +30,8 @@
      </p>
    </div>
  
-   <%= form_with id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-   
+   <%= form_with model: @order_address, url: item_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+  
    <%# カード情報の入力 %>
    <div class='credit-card-form'>
      <h1 class='info-input-haedline'>
