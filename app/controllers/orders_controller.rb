@@ -2,9 +2,8 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
   
  def index
-  @items = Item.all
   @item = Item.find(params[:item_id])
-  @order = Order.new
+  @order_address = OrderAddress.new
  end
 
  def new
@@ -25,7 +24,7 @@ class OrdersController < ApplicationController
  private
 
  def order_params
-   params.permit(:post_number, :shipping_area_id, :city_town_village, :address_number, :buliding_name, :tel_number, :order_id).merge(user_id: current_user.id, item_id: @item.id)
+   params.require(:order_address).permit(:post_number, :shipping_area_id, :city_town_village, :address_number, :buliding_name, :tel_number, :order_id).merge(user_id: current_user.id, item_id: @item.id)
  end
   
 end 
