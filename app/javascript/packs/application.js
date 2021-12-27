@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../card")
+require("../post")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -15,4 +16,4 @@ require("../card")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-require("../post")
+
