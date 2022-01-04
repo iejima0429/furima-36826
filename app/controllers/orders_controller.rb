@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :move_to_signed_in, only: :index
   
  def index
   @item = Item.find(params[:item_id])
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
  end
 
  def pay_item
-  Payjp.api_key = "sk_test_34e3dee756d8e85ac2e80d3a"
+  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   Payjp::Charge.create(
     amount: @item.price,
     card: order_params[:token],
@@ -38,5 +38,10 @@ class OrdersController < ApplicationController
   )
 end
 
+def move_to_signed_in
+  unless user_signed_in?
+    redirect_to  '/users/sign_in'
+  end
+end
   
 end 
