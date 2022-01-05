@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
   before_action :move_to_signed_in, only: :index
+  before_action :set_furima, only: :index
+  before_action :prevent_url, only: :index
+  
   
  def index
   @item = Item.find(params[:item_id])
@@ -43,5 +46,16 @@ def move_to_signed_in
     redirect_to  '/users/sign_in'
   end
 end
+
+def set_furima
+  @item = Item.find(params[:item_id])
+end
+
+def prevent_url
+  if @item.user_id == current_user.id || @item.order != nil
+    redirect_to root_path
+  end
+end
+
   
 end 
