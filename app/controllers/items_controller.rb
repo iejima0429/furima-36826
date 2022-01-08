@@ -4,11 +4,10 @@ class ItemsController < ApplicationController
   before_action :prevent_url, only: :edit
   
   def index
-    @item = Item.order("created_at DESC")
+    @item = Item.order('created_at DESC')
     @items = Item.all
-    
   end
-  
+
   def new
     @item = Item.new
   end
